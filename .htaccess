@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Block Archive.org Wayback Machine
+RewriteCond %{HTTP_USER_AGENT} ia_archiver [NC]
+
+# (Optional) Block other common scrapers and archiving bots
+RewriteCond %{HTTP_USER_AGENT} archive.org_bot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} wget [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} curl [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} python-requests [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} HTTrack [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} libwww-perl [NC]
+
+# Return 403 Forbidden
+RewriteRule .* - [F,L]
